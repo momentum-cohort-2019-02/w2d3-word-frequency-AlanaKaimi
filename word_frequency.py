@@ -1,3 +1,5 @@
+import string
+
 STOP_WORDS = [
     'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he',
     'i', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the', 'to', 'were',
@@ -7,19 +9,19 @@ STOP_WORDS = [
 def normalize_text(text):
     """Given a text, lowercases it, removes all punctuation, and replaces all whitespace with normal spaces. Multiple whitespace will be compressed into a single space."""
     
-    # normalize all words to lowercase
-        text = text.casefold()
-        valid_chars = string.ascii_letters + string.whitespace +string.digits
+# normalize all words to lowercase
+    text = text.casefold()
+    valid_chars = string.ascii_letters + string.whitespace +string.digits
         
-        # remove punctuation
-        new_text = ""
-        for char in text:
-            if char in valid_chars:
-                new_text += char
-        
-        text = new_text
-        text = text.replace("\n", " ")
-        return text
+    # remove punctuation
+    new_text = ""
+    for char in text:
+        if char in valid_chars:
+            new_text += char
+    
+    text = new_text
+    text = text.replace("\n", " ")
+    return text
 
 
 def print_word_freq(filename):
@@ -37,16 +39,41 @@ def print_word_freq(filename):
             words.append(word)
     
 
-     ## What now?
+     # What now?
     # Get a dictionary of word frequencies and print it out
-    print(words)
+# ! Created and copied referencing Dan Miller's code >
+   # still struggling with next steps on my own :/
+    words = frequency_of_words(words)
+
+    for word in sorted(words, key=words.get):
+        frequency = words[word]
+        symbol = ''
+        index = 0
+
+        while index < frequency:
+
+            symbol += '*'
+            index += 1
+
+        print("{} | {} {}".format(word, frequency, symbol))
 
 # go through the file word by word and keep a count of how often each word is used
 
 
 # Calculate the frequency of words in a file
+def frequency(a_list):
+    """Given a list, go through and find the frequency of a word"""
+    word_count = {}
+    for word in a_list:
+        if word not in word_count:
+        word_count[word] = 1
 
+        else:
+            word_count[word] += 1
+        
+        return word_count
 
+#! < Created and copied referencing Dan Miller's code 
 
 
 # boiler plate to run in command line 
